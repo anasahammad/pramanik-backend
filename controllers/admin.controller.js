@@ -1,3 +1,7 @@
+const Order = require("../models/order.model");
+const Product = require("../models/product.model");
+const User = require("../models/users.model");
+
 const getAllUsers = async (req, res) => {
     try {
       const users = await User.find({ role: 'customer' });

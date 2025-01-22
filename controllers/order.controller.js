@@ -1,3 +1,5 @@
+const Order = require("../models/order.model");
+
 const createOrder = async (req, res) => {
     try {
       const order = new Order({
