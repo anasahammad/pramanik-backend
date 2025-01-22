@@ -13,10 +13,10 @@ const userSchema = new mongoose.Schema({
   name: { type: String },
   role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
   addresses: [addressSchema],
-  otp: {
-    code: String,
-    expiresAt: Date
-  },
+  otp: { type: {
+    code: { type: String },
+    expiresAt: { type: Date }
+  } },
   createdAt: { type: Date, default: Date.now }
 });
 

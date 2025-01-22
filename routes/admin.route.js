@@ -6,7 +6,7 @@ const { adminAuth } = require('../middlewares/auth');
 const router = express.Router();
 
 router.get('/dashboard', adminAuth, getAdminDashboard);
-router.get('/users', adminAuth, getAllUsers);
+router.get('/users',  getAllUsers);
 router.get('/orders', adminAuth, getAllOrders);
 router.patch('/orders/:id/status', adminAuth, updateOrderStatus);
 router.post('/products',  createProduct);

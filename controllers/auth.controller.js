@@ -37,6 +37,7 @@ const initiateLogin = async (req, res) => {
 };
 
 const verifyOTP = async (req, res) => {
+    
   try {
     const { email, otp } = req.body;
     const user = await User.findOne({ email });
