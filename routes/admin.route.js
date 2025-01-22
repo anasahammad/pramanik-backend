@@ -9,7 +9,7 @@ router.get('/dashboard', adminAuth, getAdminDashboard);
 router.get('/users', adminAuth, getAllUsers);
 router.get('/orders', adminAuth, getAllOrders);
 router.patch('/orders/:id/status', adminAuth, updateOrderStatus);
-router.post('/products', adminAuth, createProduct);
+router.post('/products',  createProduct);
 router.patch('/products/:id', adminAuth, updateProduct);
 router.delete('/products/:id', adminAuth, deleteProduct);
 
