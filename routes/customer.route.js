@@ -6,7 +6,7 @@ const { auth } = require('../middlewares/auth');
 const router = express.Router();
 
 router.get('/profile', auth, getProfile);
-router.patch('/profile', auth, updateProfile);
+router.put('/profile', auth, updateProfile);
 router.get('/orders', auth, getCustomerOrders);
 router.post('/orders', auth, createOrder);
 router.get('/products', getProducts);

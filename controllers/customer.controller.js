@@ -1,9 +1,11 @@
 const updateProfile = async (req, res) => {
     try {
       const updates = Object.keys(req.body);
-      const allowedUpdates = ['name', 'addresses'];
+     
+      const allowedUpdates = ['addresses'];
+      
       const isValidOperation = updates.every(update => allowedUpdates.includes(update));
-  
+      console.log(allowedUpdates);
       if (!isValidOperation) {
         throw new Error('Invalid updates');
       }

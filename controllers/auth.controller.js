@@ -60,7 +60,19 @@ const verifyOTP = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+        return res.status(404).send({message: "User not found"});
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
 module.exports = {
   initiateLogin,
   verifyOTP,
+  getUserById
 };
