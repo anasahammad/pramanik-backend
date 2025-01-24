@@ -24,6 +24,7 @@ app.use(morgan("dev"));
 app.use("/api/auth", require("../routes/auth.route.js"));
 app.use("/api/admin", require("../routes/admin.route.js"));
 app.use("/api/customer", require("../routes/customer.route.js"));
+app.use("/api/category", require("../routes/category.route.js"));
 
 app.get("/", (req, res) => {
   res.send("Server is running");
