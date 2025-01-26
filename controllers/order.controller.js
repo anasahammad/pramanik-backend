@@ -14,9 +14,10 @@ const createOrder = async (req, res) => {
   };
   
   const getCustomerOrders = async (req, res) => {
+    const id = req.params.id;
     try {
       const orders = await Order.find({ user: req.user._id })
-        .populate('products.product')
+        .populate('product')
         .sort({ createdAt: -1 });
       res.send(orders);
     } catch (error) {
@@ -24,11 +25,23 @@ const createOrder = async (req, res) => {
     }
   };
   
+const getSingleOrder = async (req, res) => {
+    const id = req.params.id;
+    try {
+      const order = await Order.findOne({_id:id}).populate( 'product');
+      if (!order) {
+        return res.status(404).send();
+      }
+      res.send(order);
+    } catch (error) {
+      res.status(500).send({ error: error.message });
+    }
+}
   const getAllOrders = async (req, res) => {
     try {
       const orders = await Order.find({})
         .populate('user', 'email')
-        .populate('products.product')
+        .populate('product')
         .sort({ createdAt: -1 });
       res.send(orders);
     } catch (error) {
@@ -52,9 +65,23 @@ const createOrder = async (req, res) => {
     }
   };
   
+const deleteOrder = async (req, res) => {
+    try {
+      const order = await Order.findByIdAndDelete(req.params.id);
+      if (!order) {
+        return res.status(404).send();
+      }
+      res.send(order);
+    } catch (error) {
+      res.status(500).send({ error: error.message });
+    } 
+}
+
   module.exports = {
     createOrder,
     getCustomerOrders,
     getAllOrders,
-    updateOrderStatus
+    updateOrderStatus,
+    getSingleOrder,
+    deleteOrder
   }

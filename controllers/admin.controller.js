@@ -20,7 +20,7 @@ const getAllUsers = async (req, res) => {
         .sort({ createdAt: -1 })
         .limit(5)
         .populate('user', 'email')
-        .populate('products.product', 'name');
+        .populate('product', 'name');
   
       res.send({
         totalUsers,
