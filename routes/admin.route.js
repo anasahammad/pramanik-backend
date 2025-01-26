@@ -5,7 +5,7 @@ const { createProduct, updateProduct, deleteProduct } = require('../controllers/
 const { adminAuth } = require('../middlewares/auth');
 const router = express.Router();
 
-router.get('/dashboard', adminAuth, getAdminDashboard);
+router.get('/dashboard',  getAdminDashboard);
 router.get('/users',  getAllUsers);
 router.get('/orders',  getAllOrders);
 router.get('/orders/:id', adminAuth, getSingleOrder);
