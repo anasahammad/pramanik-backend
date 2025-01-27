@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/profile', auth, getProfile);
 router.put('/profile', auth, updateProfile);
 router.get('/orders', auth, getCustomerOrders);
-router.post('/orders', auth, createOrder);
+router.post('/orders',  createOrder);
 router.get('/products', getProducts);
 
 module.exports = router;

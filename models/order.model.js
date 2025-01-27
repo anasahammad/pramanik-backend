@@ -1,8 +1,21 @@
 const { default: mongoose } = require("mongoose");
-
+const { v4: uuidv4 } = require("uuid");
+const ProductSchema = new mongoose.Schema({
+  
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  images: { type: [String] },
+  qty: { type: Number, required: true }, // quantity of product
+});
 const orderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
-   product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+
+    orderId: {
+      type: String,
+      default: () => `ORD-${uuidv4().split("-")[0]}`,
+      unique: true,
+    },
+    product: [ProductSchema],
     quantity: { type: Number, required: true },
 
     totalAmount: { type: Number, required: true },

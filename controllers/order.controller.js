@@ -1,12 +1,21 @@
 const Order = require("../models/order.model");
+const Product = require("../models/product.model");
 
 const createOrder = async (req, res) => {
     try {
       const order = new Order({
         ...req.body,
-        user: req.user._id
+        user: req.user?._id || null,
       });
       await order.save();
+
+      if(order){
+        Product.findById(req.body.product).then(product => {
+          product.stock = product.stock - req.body.quantity;
+          product.save();
+        })
+      }
+
       res.status(201).send(order);
     } catch (error) {
       res.status(400).send({ error: error.message });
