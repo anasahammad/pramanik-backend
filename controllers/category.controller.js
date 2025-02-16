@@ -33,10 +33,10 @@ const getCategoryById = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   try {
-    const { name, description, subcategories } = req.body;
+    const { name, description, subcategories, image } = req.body;
     const category = await Category.findByIdAndUpdate(
       req.params.id, 
-      { name, description, subcategories },
+      { name, description, subcategories, image },
       { new: true }
     );
     if (!category) return res.status(404).json({ message: 'Category not found' });

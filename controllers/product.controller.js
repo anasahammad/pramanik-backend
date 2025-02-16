@@ -51,9 +51,30 @@ const createProduct = async (req, res) => {
     }
   };
   
+  const getProductsByCategory = async (req, res) => {
+    try {
+      const products = await Product.find({ category: req.params.id });
+      res.send(products);
+    }
+    catch (error) {
+      res.status(500).send({ error: error.message });
+    }
+
+  }
+
+  const getSpecialProduct = async (req, res) => { 
+    try {
+      const products = await Product.find({ isSpecial: true });
+      res.send(products);
+    } catch (error) {
+      res.status(500).send({ error: error.message }); 
+    }
+  }
   module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
-    getProducts
+    getProducts,
+    getProductsByCategory,
+    getSpecialProduct
   }

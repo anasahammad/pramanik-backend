@@ -36,6 +36,7 @@ const productSchema = new mongoose.Schema({
   service: { type: [Object], required: false },
   description: { type: String, required: true },
   price: { type: Number, required: true },
+  discount: { type: Number, required: false },
   stock: { type: Number, required: true },
   category: { 
     type: mongoose.Schema.Types.ObjectId, 
@@ -47,6 +48,9 @@ const productSchema = new mongoose.Schema({
     ref: 'Category.subcategories', 
     required: true 
   },
+  isNew: { type: Boolean, default: false },
+  isSpecial: { type: Boolean, default: false },
+  reviews: {type: [mongoose.Schema.Types.ObjectId], ref: 'Review', required: false},
   images: { type: [String], required: true },
   isActive: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now }
