@@ -3,6 +3,7 @@ const { getAdminDashboard, getAllUsers } = require('../controllers/admin.control
 const { getAllOrders, updateOrderStatus, getSingleOrder, deleteOrder } = require('../controllers/order.controller');
 const { createProduct, updateProduct, deleteProduct } = require('../controllers/product.controller');
 const { adminAuth } = require('../middlewares/auth');
+const { createBanner, getAllBanners, deleteBanner, updateBanner } = require('../controllers/banner.controller');
 const router = express.Router();
 
 router.get('/dashboard',  getAdminDashboard);
@@ -14,5 +15,8 @@ router.delete('/orders/:id', adminAuth, deleteOrder);
 router.post('/products',  createProduct);
 router.patch('/products/:id', adminAuth, updateProduct);
 router.delete('/products/:id', adminAuth, deleteProduct);
-
+router.post('/banner/',  createBanner);
+router.get('/banner/',  getAllBanners);
+router.delete('/banner/:id',  deleteBanner);
+router.patch('/banner/:id',  updateBanner);
 module.exports = router;

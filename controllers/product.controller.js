@@ -62,6 +62,18 @@ const createProduct = async (req, res) => {
 
   }
 
+  const getProductsBySubCategory = async (req, res) => {
+    console.log(req.params.id);
+    try {
+      const products = await Product.find({ subcategory: req.params.id });
+      res.send(products);
+    }
+    catch (error) {
+      res.status(500).send({ error: error.message });
+    }
+
+  }
+
   const getSpecialProduct = async (req, res) => { 
     try {
       const products = await Product.find({ isSpecial: true });
@@ -76,5 +88,6 @@ const createProduct = async (req, res) => {
     deleteProduct,
     getProducts,
     getProductsByCategory,
-    getSpecialProduct
+    getSpecialProduct,
+    getProductsBySubCategory
   }
