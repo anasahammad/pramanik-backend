@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema({
   subcategory: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Category.subcategories', 
-    required: true 
+    required: false 
   },
   isNew: { type: Boolean, default: false },
   isSpecial: { type: Boolean, default: false },

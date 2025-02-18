@@ -5,10 +5,10 @@ const ProductSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   images: { type: [String] },
-  qty: { type: Number, required: true }, // quantity of product
+  qty: { type: Number, default: 1, required: true }, // quantity of product
 });
 const orderSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 
     orderId: {
       type: String,

@@ -2,10 +2,12 @@ const Order = require("../models/order.model");
 const Product = require("../models/product.model");
 
 const createOrder = async (req, res) => {
+
+  console.log(req.body.user);
     try {
       const order = new Order({
         ...req.body,
-        user: req.user?._id || null,
+        user: req.body?.user || null,
       });
       await order.save();
 
@@ -24,10 +26,13 @@ const createOrder = async (req, res) => {
   
   const getCustomerOrders = async (req, res) => {
     const id = req.params.id;
+    console.log(req.user._id);
     try {
       const orders = await Order.find({ user: req.user._id })
         .populate('product')
         .sort({ createdAt: -1 });
+
+        
       res.send(orders);
     } catch (error) {
       res.status(500).send({ error: error.message });
