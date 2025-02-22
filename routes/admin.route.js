@@ -14,7 +14,7 @@ router.patch('/orders/:id/status',  updateOrderStatus);
 router.delete('/orders/:id', adminAuth, deleteOrder);
 router.post('/products',  createProduct);
 router.patch('/products/:id', adminAuth, updateProduct);
-router.delete('/products/:id', adminAuth, deleteProduct);
+router.delete('/products/product/:id', adminAuth, deleteProduct);
 router.post('/banner/',  createBanner);
 router.get('/banner/',  getAllBanners);
 router.delete('/banner/:id',  deleteBanner);
